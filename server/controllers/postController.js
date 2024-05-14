@@ -1,4 +1,4 @@
-
+const Like=require('../models/likeModel')
 const Post=require('../models/PostModel')
 const Comment=require('../models/commentModel')
 const {assyncErrorHandler, CustomError}=require('../utils/erroHandling')
@@ -26,9 +26,7 @@ const createPost=assyncErrorHandler(async(req,res,next)=>{
                 }
             })
         }
-    
 })
-
 const deletePost=assyncErrorHandler(async(req,res,next)=>{
     const {_id}=req.body
     if(_id!==req.user._id){
@@ -80,7 +78,24 @@ const getAllCommentsOfMyPost=assyncErrorHandler(async(req,res,next)=>{
                     comments
                 }
     })
+})
 
+const likePost=assyncErrorHandler(async(req,res,next)=>{
+        const id=req.body.user
+        if(req.user._id!==id){
+            const error=new CustomError('you dont have permission for this action',400)
+            next(error)
+        }
+
+        const like=await Like.create(req.body)
+        if(like){
+            res.status(201).json({
+                status:'success',
+                data:{
+                    like
+                }
+            })
+        }
 
 })
 module.exports={
@@ -88,5 +103,6 @@ module.exports={
     createPost,
     deletePost,
     getAllCommentsOfMyPost,
-    addComment
+    addComment,
+    likePost
 }

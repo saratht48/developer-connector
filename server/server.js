@@ -4,6 +4,7 @@ dotenv.config({path: '../configuration.env'});
 const {connectDB}=require('./config/db')
 const cors=require('cors');
 const userRouter = require('./routes/userRoutes');
+const postRouter=require('./routes/postRoutes')
 const { errorMiddleware } = require('./middleware/errorMiddleware');
 const app=express()
 connectDB()
@@ -13,6 +14,7 @@ app.use(express.urlencoded({extended:false}))// to access request body
 app.use(cors())
 app.use(express.static('./public'))
 app.use('/api/v1/users',userRouter)
+app.use('/api/v1/posts',postRouter)
 app.use(errorMiddleware)
 app.listen(port,()=>{
     console.log(`listening to the server at port ${port}`)
