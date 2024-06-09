@@ -1,0 +1,1 @@
+export const Eduheading=['School','Degree','Years','']

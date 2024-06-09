@@ -29,23 +29,28 @@ const createPost=assyncErrorHandler(async(req,res,next)=>{
 })
 const deletePost=assyncErrorHandler(async(req,res,next)=>{
     const {_id}=req.body
-    if(_id!==req.user._id){
-        const error=new CustomError('you dont have permission for this action',400)
+    const posttobedeleted=await Post.findOne({_id})
+    if(posttobedeleted){
+         if(req.user._id!=posttobedeleted.user){
+            const error=new CustomError('you dont have permission for this action',400)
+            next(error)
+         }
+         if(!_id){
+            const error=new CustomError('please give id',400)
+            next(error)
+        }
+        const post=await Post.findByIdAndDelete(_id)
+        if(post){
+            res.status(200).json({
+                status:'successfully deleted the post',
+                data:{
+                    post
+                }
+            })
+        }
+    }else{
+        const error=new CustomError('no post with this id',404)
         next(error)
-    }
-    if(!_id){
-        const error=new CustomError('please give id',400)
-        next(error)
-    }
-
-    const post=await Post.findByIdAndDelete(_id)
-    if(post){
-        res.status(200).json({
-            status:'successfully deleted the post',
-            data:{
-                post
-            }
-        })
     }
 })
  const addComment=assyncErrorHandler(async(req,res,next)=>{

@@ -1,0 +1,58 @@
+.detail-wrapper{
+    max-width: 800px;
+    margin: 0px auto;
+    padding-block-start: 1rem;
+}
+.developer-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: aqua;
+    padding-block: 2rem;
+    margin-bottom: 1rem;
+}
+.image-wrapper{
+    width: 20%;
+}
+.image-wrapper img{
+    width: 100%;
+    border-radius: 50%;
+}
+.bio-skills{
+    padding: 1rem;
+    background-color: #efefef;
+    border: 1px solid rgb(178, 153, 153);
+}
+.section2{
+    padding-block: 1rem;
+    text-align: center;
+}
+.section1{
+    border-bottom: 1px solid rgb(178, 153, 153);
+    padding-block: 1rem;
+    text-align: center;
+}
+.headings{
+    color: teal;
+}
+.skilset{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.exp-edu{
+    margin-top: 1rem;
+    border: 1px solid rgb(178, 153, 153);
+    padding: 1rem;
+    display: flex;
+    gap: .5rem;
+}
+.experience{
+    padding: 1rem;
+}
+.education{
+    padding: 1rem;
+}

@@ -1,0 +1,16 @@
+.header-wrapper{
+    background-color: #525050;
+    display: flex;
+    padding-inline: 1rem;
+    justify-content: space-between;
+    padding-block-end: .75rem;
+    border-bottom: 2px solid rgba(0, 255, 234, 0.849);
+}
+ul{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+li{
+    list-style: none;
+}

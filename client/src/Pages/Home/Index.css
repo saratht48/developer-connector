@@ -1,0 +1,20 @@
+.home-wrapper{
+    background-image: url(../../assets/home-banner.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text-wrapper{
+    color: #ffff;
+    text-align: center;
+    line-height: 1.6;
+}
+.btn-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}

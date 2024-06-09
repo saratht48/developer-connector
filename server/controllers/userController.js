@@ -71,19 +71,23 @@ const login=assyncErrorHandler(async(req,res,next)=>{
 
 const addProfile =assyncErrorHandler(async(req,res,next)=>{
       console.log(req.body)
-     console.log(req.body._id,req.user._id,'lllllllllllll')
-      if(req.body._id!==req.user._id){
+     console.log(req.body.user,req.user._id,'lllllllllllll')
+      if(req.body.user!==req.user._id){
         const error=new CustomError('you are not unauthorized to perform this task',401)
         next(error)
       }
       let profile;
-      const didProfileExist =await Profile.find({user:req.body._id})
+      const didProfileExist =await Profile.findOne({user:req.body.user})
+      console.log(didProfileExist,'profile exist')
       if(didProfileExist){
-          profile=await Profile.findByIdAndUpdate(req.body._id,req.body,{new:true})
+          profile=await Profile.findByIdAndUpdate(didProfileExist._id,req.body,{new:true})
+          console.log('profile update',profile)
       }else{
          profile=await Profile.create(req.body)
+         console.log('profile creat',profile)
       }
       if(profile){
+        console.log('entered profile',profile)
         res.status(201).json({
             status:'success',
                         data:{
@@ -104,10 +108,30 @@ const getAllProfiles=assyncErrorHandler(async(req,res)=>{
         
 })
 
+const getMyProfile=assyncErrorHandler(async(req,res,next)=>{
+      const id=req.user._id
+      console.log(id)
+      const profile=await Profile.findOne({user:id})
+      console.log(profile,'profile')
+      if(profile){
+           res.status(200).json({
+              status:"sucesss",
+              data:profile
+           })
+      }else{
+        res.status(200).json({
+            status:"sucesss",
+            data:'no profile found'
+         })
+      }
+        
+})
+
 
 module.exports={
     login,
     register,
     addProfile,
-    getAllProfiles
+    getAllProfiles,
+    getMyProfile
 }

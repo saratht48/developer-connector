@@ -1,0 +1,30 @@
+.btn-wrapper{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.btn-wrapper span{
+    display: flex;
+    align-items: center;
+}
+.table-wrapper{
+    width: 100%;
+}
+table{
+    width: 100%;
+}
+table thead{
+    background-color: #efefef;
+}
+table thead th{
+    text-align: start;
+    padding: .5rem;
+}
+table tbody td{
+    padding: .5rem;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
